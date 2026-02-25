@@ -1,61 +1,76 @@
 let pausado = false;
-let min = 0;
-let seg = 0;
-let miliseg = 0;
-let zero = "";
 let minutosText = document.getElementById("minutos");
 let segundosText = document.getElementById("segundos");
+let zero = "0";
+let min = 24;
+let seg = 60;
+let interval = null;
 
-function cronometroSTART() {
-    let interval;
-    let min = 25;
-    let seg = 0;
-    pausado = false;
-    let miliseg = 999;
+function atualizarDisplay() {
+    let minutosText = document.getElementById("minutos");
+    let segundosText = document.getElementById("segundos");
 
+    minutosText.textContent = min < 10 ? "0" + min : min;
+    segundosText.textContent = seg < 10 ? "0" + seg : seg;
+
+    // reinicia animação
+    tempo.classList.remove("animar");
+    void tempo.offsetWidth; // força reflow
+    tempo.classList.add("animar");
+}
+
+function cronometroSTART_PADRAO() {
+    
     minutosText = document.getElementById("minutos");
     segundosText = document.getElementById("segundos");
+    
+    if(interval != null) return;
 
-    min = 24;
-    seg = 60;
+    pausado = false
+    
     interval = setInterval(()=>{
-        if(pausado === false){
+        
 
-            seg -= 1;
-
-            if(seg == 0){
-                min -= 1;
+        if(!pausado){
+           if (seg === 0) {
+                if (min === 0) {
+                    clearInterval(interval);
+                    interval = null;
+                    return;
+                }
+                min--;
                 seg = 59;
+            } else {
+                seg--;
             }
 
-            minutosText.textContent = min;
-            segundosText.textContent = seg;
-
-            if(seg <= 9){
-                zero = "0";
-                segundosText.textContent =  zero + seg;
-            };
-
-            if(min <= 9){
-                zero = "0";
-                minutosText.textContent = zero + min;
-            }
-
+            atualizarDisplay();
         }
     }, 1000)
 
 }
 
-function cronometroSTOP(){
+function cronometroSTOP_PADRAO(){
+    clearInterval(interval);
+    interval = null;
+}
+
+function cronometroReset_PADRAO(){    
+    clearInterval(interval);
+    interval = null;
+
     pausado = true;
 
-    const minutosText = document.getElementById("minutos");
-    const segundosText = document.getElementById("segundos");
-    const millissegundosText = document.getElementById("millissegundos");
+    min = 25;
+    seg = 0;
+
+    atualizarDisplay();
 }
 
-function cronometroReset(){
-    minutosText.textContent = 25;
-    segundosText.textContent = "00";
-    millissegundosText.textContent = miliseg;
-}
+document.addEventListener("DOMContentLoaded", function(){
+
+    document.getElementById("Start").addEventListener("click", cronometroSTART_PADRAO);
+    document.getElementById("Stop").addEventListener("click", cronometroSTOP_PADRAO);
+    document.getElementById("Reset").addEventListener("click", cronometroReset_PADRAO);
+
+})

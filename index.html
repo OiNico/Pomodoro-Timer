@@ -6,7 +6,7 @@
     <title>Pomodoro Timer</title>
     
     <link rel="stylesheet" href="style.css">
-    <link rel="shortcut icon" type="image/png" href="./assets/relogio.ico">
+    <link rel="shortcut icon" type="image/png" href="./assets/Component 1.png">
     
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,23 +15,23 @@
     
 </head>
 <body>
-    <script src="main.js"></script>
-    
     <div class="container">
         <h1>Pomodoro Timer</h1>
         
-        <div class="Timer">
+        <div class="Timer" id="tempo">
             <div class="time" id="minutos" >25</div>
             <div class="separator" id="pontos">:</div>
             <div class="time" id="segundos">00</div>
         </div>
         
         <div class="btns">
-            <button class="btnStart" id="Start" onclick="cronometroSTART()">Começar</button>
-            <button class="btnStop" id="Stop" onclick="cronometroSTOP()">Parar</button>
-            <button class="btnReset" id="Reset" onclick="cronometroReset()">Reset</button>
+            <button class="btnStart" id="Start">Começar</button>
+            <button class="btnStop" id="Stop" onclick="cronometroSTOP_PADRAO">Parar</button>
+            <button class="btnReset" id="Reset" onclick="cronometroReset_PADRAO">Reset</button>
         </div>
-
+        
     </div>
+
+    <script src="main.js"></script>
 </body>
 </html>
