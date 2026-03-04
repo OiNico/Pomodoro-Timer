@@ -33,9 +33,9 @@ O método Pomodoro consiste em:
 
 Ou simplesmente abra o projeto clicando duas vezes no arquivo HTML.
 
-## 📷 Demonstração TO DO
+## 📷 Demonstração
 
-Adicione aqui prints da aplicação rodando.
+https://github.com/user-attachments/assets/21620716-7504-4fd4-b476-55a6debdeced
 
 ## 💡 Aprendizados
 
